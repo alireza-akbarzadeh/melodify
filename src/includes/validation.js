@@ -4,7 +4,7 @@ import {
   defineRule,
   ErrorMessage,
   configure
-} from 'vee-validate'
+} from 'vee-validate';
 import {
   required,
   max,
@@ -15,24 +15,24 @@ import {
   max_value,
   confirmed,
   not_one_of as excluded
-} from '@vee-validate/rules'
+} from '@vee-validate/rules';
 
 export default {
   install(app) {
-    app.component('VeeForm', VeeForm)
-    app.component('VeeField', VeeField)
-    app.component('ErrorMessage', ErrorMessage)
-    defineRule('required', required)
-    defineRule('tos', required)
-    defineRule('min', min)
-    defineRule('max', max)
-    defineRule('alpha_spaces', alphaSpaces)
-    defineRule('email', email)
-    defineRule('min_value', minVal)
-    defineRule('max_value', max_value)
-    defineRule('passwords_mismatch', confirmed)
-    defineRule('excluded', excluded)
-    defineRule('country_excluded', excluded)
+    app.component('VeeForm', VeeForm);
+    app.component('VeeField', VeeField);
+    app.component('ErrorMessage', ErrorMessage);
+    defineRule('required', required);
+    defineRule('tos', required);
+    defineRule('min', min);
+    defineRule('max', max);
+    defineRule('alpha_spaces', alphaSpaces);
+    defineRule('email', email);
+    defineRule('min_value', minVal);
+    defineRule('max_value', max_value);
+    defineRule('passwords_mismatch', confirmed);
+    defineRule('excluded', excluded);
+    defineRule('country_excluded', excluded);
     configure({
       generateMessage: (ctx) => {
         const messages = {
@@ -47,16 +47,16 @@ export default {
           country_excluded: `Due to restrictions, we do not accept users form this location.`,
           passwords_mismatch: 'The passwords dont match',
           tos: 'You must accept the Terms of Services.'
-        }
+        };
         const message = messages[ctx.rule.name]
           ? messages[ctx.rule.name]
-          : `The field ${ctx.field} is invalid.`
-        return message
+          : `The field ${ctx.field} is invalid.`;
+        return message;
       },
       validateOnBlur: true,
       validateOnChange: true,
       validateOnInput: false,
       validateOnModelUpdate: true
-    })
+    });
   }
-}
+};

@@ -40,6 +40,9 @@
   </vee-form>
 </template>
 <script>
+import { mapActions } from 'pinia';
+import useUserStore from '@/stores/user';
+
 export default {
   name: 'LoginForm',
   data() {
@@ -52,20 +55,30 @@ export default {
       login_show_alert: false,
       login_alert_variant: 'bg-blue-500',
       login_alert_msg: 'Please wait! We are logging you in.'
-    }
+    };
   },
   methods: {
-    login(values) {
-      this.login_show_alert = true
-      this.login_in_submission = true
-      this.login_alert_variant = 'bg-blue-500'
-      this.login_alert_msg = 'Please wait! We are logging you in.'
+    ...mapActions(useUserStore, ['authenticate']),
+    async login(values) {
+      this.login_show_alert = true;
+      this.login_in_submission = true;
+      this.login_alert_variant = 'bg-blue-500';
+      this.login_alert_msg = 'Please wait! We are logging you in.';
 
-      this.login_alert_variant = 'bg-green-500'
-      this.login_alert_msg = 'Success! You are now logged in.'
+      try {
+        await this.authenticate(values);
+      } catch (error) {
+        this.login_in_submission = false;
+        this.login_alert_variant = 'bg-red-500';
+        this.login_alert_msg = 'Invalid login details.';
+        return;
+      }
 
-      console.log({ login: values })
+      this.login_alert_variant = 'bg-green-500';
+      this.login_alert_msg = 'Success! You are now logged in.';
+
+      console.log({ login: values });
     }
   }
-}
+};
 </script>

@@ -60,11 +60,11 @@
   </div>
 </template>
 <script>
-import { mapState, mapWritableState } from 'pinia'
+import { mapState, mapWritableState } from 'pinia';
 
-import useModalStore from '@/stores/modal'
-import LoginForm from '@/components/LoginForm.vue'
-import RegisterForm from '@/components/RegisterForm.vue'
+import useModalStore from '@/stores/modal';
+import LoginForm from '@/components/LoginForm.vue';
+import RegisterForm from '@/components/RegisterForm.vue';
 
 export default {
   name: 'AppAuth',
@@ -72,7 +72,7 @@ export default {
   data() {
     return {
       tab: 'login'
-    }
+    };
   },
   computed: {
     ...mapState(useModalStore, ['hiddenClass']),
@@ -80,6 +80,6 @@ export default {
       modalVisibility: 'isOpen'
     })
   }
-}
+};
 </script>
 <style lang=""></style>

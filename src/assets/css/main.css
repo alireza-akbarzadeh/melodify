@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer utilities {
   .input-class {
     @apply text-16 placeholder:text-16 bg-black-1 rounded-[6px] placeholder:text-gray-1 border-none text-gray-1;
@@ -93,9 +92,6 @@
   -webkit-backdrop-filter: blur(37px);
 }
 
-
-
-
 a {
   transition: all 0.15s ease;
 }
@@ -134,20 +130,22 @@ a:hover {
   border-style: solid;
 }
 
-input[type="file"] {
+input[type='file'] {
   margin-top: 20px;
 }
 
 .progress-bar {
   background-size: 1rem 1rem;
-  background-image: linear-gradient(45deg,
-      rgba(255, 255, 255, 0.15) 25%,
-      transparent 25%,
-      transparent 50%,
-      rgba(255, 255, 255, 0.15) 50%,
-      rgba(255, 255, 255, 0.15) 75%,
-      transparent 75%,
-      transparent);
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
   animation: progress-bar-stripes 1s linear infinite;
 }
 
