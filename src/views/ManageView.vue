@@ -136,17 +136,7 @@
   </section>
 </template>
 <script>
-import userUserStore from '@/stores/user';
-
 export default {
-  name: 'ManageView',
-  beforeRouteEnter(to, from, next) {
-    const store = userUserStore();
-    if (store.userLoggedIn) {
-      next();
-    } else {
-      next({ name: 'home' });
-    }
-  }
+  name: 'ManageView'
 };
 </script>
