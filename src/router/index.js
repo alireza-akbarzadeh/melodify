@@ -1,23 +1,36 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import HomeView from '../views/HomeView.vue';
+import AboutView from '@/views/AboutView.vue';
+import HomeView from '@/views/HomeView.vue';
+import ManageView from '@/views/ManageView.vue';
+import { createRouter, createWebHashHistory } from 'vue-router';
+
+const routes = [
+  {
+    name: 'home',
+    path: '/',
+    component: HomeView
+  },
+  {
+    name: 'about',
+    path: '/about',
+    component: AboutView
+  },
+  {
+    name: 'manage',
+    // alias: '/mange',
+    path: '/manage-music',
+    component: ManageView
+  },
+  {
+    // also you can render a 40 components here insted of redirectring
+    path: '/:catchAll(.*)*',
+    redirect: { name: 'home' }
+  }
+];
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: HomeView
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/AboutView.vue')
-    }
-  ]
+  history: createWebHashHistory(import.meta.env.BASE_URL),
+  routes,
+  linkExactActiveClass: 'text-yellow-500'
 });
 
 export default router;
