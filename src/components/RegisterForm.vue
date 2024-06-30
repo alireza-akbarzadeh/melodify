@@ -7,7 +7,7 @@
     {{ reg_alert_msg }}
   </div>
   <!-- Registration Form -->
-  <vee-form :validation-schema="schema" @submit="register" :initial-valuse="userData">
+  <vee-form :validation-schema="schema" @submit="register" :initial-values="userData">
     <!-- Name -->
     <div class="mb-3">
       <label class="inline-block mb-2">Name</label>

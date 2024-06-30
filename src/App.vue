@@ -34,6 +34,7 @@
     </div>
   </div>
   <app-auth />
+  <toaster />
 </template>
 
 <script>
@@ -42,10 +43,11 @@ import AppAuth from '@/components/Auth.vue';
 import { mapWritableState } from 'pinia';
 import useUserStore from '@/stores/user';
 import { auth } from '@/includes/firebase';
+import { Toaster } from '@/components/ui/sonner';
 
 export default {
   name: 'App',
-  components: { AppHeader, AppAuth },
+  components: { AppHeader, AppAuth, Toaster },
   computed: {
     ...mapWritableState(useUserStore, ['userLoggedIn'])
   },
