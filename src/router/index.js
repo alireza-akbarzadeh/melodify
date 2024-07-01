@@ -1,6 +1,7 @@
-import AboutView from '@/views/AboutView.vue';
-import HomeView from '@/views/HomeView.vue';
-import ManageView from '@/views/ManageView.vue';
+import AboutView from '@/views/About.vue';
+import HomeView from '@/views/Home.vue';
+import ManageView from '@/views/Manage.vue';
+import SongView from '@/views/Song.vue';
 import { createRouter, createWebHashHistory } from 'vue-router';
 import useUserStore from '@/stores/user';
 
@@ -22,6 +23,7 @@ const routes = [
     component: ManageView,
     meta: { requiresAuth: true }
   },
+  { name: 'song', path: '/song/:id', component: SongView },
   {
     // also you can render a 40 components here insted of redirectring
     path: '/:catchAll(.*)*',
