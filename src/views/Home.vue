@@ -48,7 +48,8 @@ export default {
   data() {
     return {
       songs: [],
-      maxPerPage: 3
+      maxPerPage: 3,
+      pendingRequest: false
     };
   },
   async created() {
@@ -60,15 +61,26 @@ export default {
   },
   methods: {
     async getSongs() {
-      const lastDoc = await songsCollection.doc(this.songs[this.songs.length - 1].docID).get();
-
-      const snapshot = await songsCollection.startAfter().limit(this.maxPerPage).get();
+      if (this.pendingRequest) return;
+      this.pendingRequest = true;
+      let snapshot;
+      if (this.songs.length) {
+        const lastDoc = await songsCollection.doc(this.songs[this.songs.length - 1].docID).get();
+        snapshot = await songsCollection
+          .orderBy('modified')
+          .startAfter(lastDoc)
+          .limit(this.maxPerPage)
+          .get();
+      } else {
+        snapshot = await songsCollection.orderBy('modified').limit(this.maxPerPage).get();
+      }
       snapshot.forEach((document) => {
         this.songs.push({
           docID: document.id,
           ...document.data()
         });
       });
+      this.pendingRequest = false;
     },
     handleScroll() {
       const { scrollTop, offsetHeight } = document.documentElement;
